@@ -1,9 +1,16 @@
 import predictions from '../predictions.json';
 
 export default function handler(req, res) {
-  const { element, yin_yang, month } = req.body || {};
+  let { element, yin_yang, month } = req.body || {};
+
+  // Нормализация
+  element = (element || "").toLowerCase().trim();
+  yin_yang = (yin_yang || "").replace("☯️", "").trim().toLowerCase();
+  month = "6"; // жёстко подставляем июнь
+
   const forecast =
-    predictions?.[yin_yang?.toLowerCase()]?.[element?.toLowerCase()]?.[month?.toString()] || "Для этой комбинации пока нет прогноза.";
+    predictions?.[yin_yang]?.[element]?.[month] ||
+    "Для этой комбинации пока нет прогноза.";
 
   res.status(200).json({ forecast });
 }
