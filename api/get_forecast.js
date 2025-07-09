@@ -18,7 +18,6 @@ export default async function handler(req, res) {
 
   let { element, yin_yang } = body;
 
-  // нормализация
   element = typeof element === 'string' ? element.toLowerCase().trim() : "";
   yin_yang = typeof yin_yang === 'string' ? yin_yang.replace("☯️", "").toLowerCase().trim() : "";
   const month = "6";
