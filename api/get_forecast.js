@@ -3,7 +3,6 @@ import predictions from '../predictions.json';
 export default async function handler(req, res) {
   let body = {};
 
-  // Если POST — читаем тело вручную
   if (req.method === 'POST') {
     try {
       const buffers = [];
@@ -17,7 +16,6 @@ export default async function handler(req, res) {
     }
   }
 
-  // Достаём значения
   let { element, yin_yang } = body;
 
   // нормализация
